@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+#creat hi after the "best school" number 9
+
+count=0
+while [ $count -lt 11 ]; do
+	if [ $count = 9 ]
+	then
+		echo "hi"
+	else
+		echo "Best School"
+	fi
+	((count++))
+done
