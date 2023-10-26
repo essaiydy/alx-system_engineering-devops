@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+#cret best school x10 using until
+
+count=0
+until [ $count -ge 10 ]; do
+	echo "Best School"
+	((count++))
+done
