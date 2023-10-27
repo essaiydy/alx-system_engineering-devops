@@ -1,3 +1,4 @@
 #!/usr/bin/env bash
-#ps:wq
-ps aus --forest
+#ps
+
+ps aux --forest
