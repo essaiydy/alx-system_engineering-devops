@@ -4,6 +4,7 @@
 # Displays Fizz when the number is multiple of 3
 # Displays Buzz when the number is a multiple of 5
 # Otherwise, displays the number
+
 for i in {1..100}
 do
         if [ $((i%5)) = 0 ] && [ $((i%3)) = 0 ]
@@ -15,7 +16,7 @@ do
         elif [ $((i%5)) = 0 ]
         then
 		echo "Buzz"
-	 else
+	else
                 echo $i
         fi
 done
