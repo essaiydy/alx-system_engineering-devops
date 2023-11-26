@@ -1,0 +1,31 @@
+Link to the design: https://docs.google.com/document/d/1q1NYLCJchf8fJ4vwuSxv0ySXesiRbUZJKonkkcBZna8/edit?usp=sharing
+
+====================================================================================================================
+
+            1-Explanation of some components and terms used in this infrastructure
+        
+    a-Server: A server is a device, a virtual device or computer program or providing functionality for other
+                programs or devices, called “clients”.
+
+    b-The role of the domain name: A domain name provides a human-readable and memorable way to identify and access  
+                                    resources on the internet.
+
+    c- Type of DNS record www is in www.foobar.com: An "A" (Address) record 
+
+    d- The role of the web server: Answering the request coming from the client
+
+    e- The role of the application server: the application server acts as the middleware between the front-end user interface
+                                            and the back-end database or other services It manages application logic, data transactions, and various aspects of application behavior, contributing to the overall functionality and performance of a web application.
+    
+    f- The role of the database: The database serves as a central repository for an application's data, providing mechanisms for storing, 
+                                    retrieving, and managing data in a secure and efficient manner.
+
+    g- The server using to communicate with the computer of the user requesting the website HTTP and HTTPS
+
+            2- The issues with this infrastructure:
+
+    SPOFs Impacting Site Availability: The infrastructure's reliance on a single MySQL database server creates a potential single point of failure. If this server goes down, the entire website becomes unavailable. Implementing redundant systems or failover mechanisms could mitigate this risk.
+
+    Downtime for Maintenance: When maintenance tasks need to be performed on any component of the infrastructure, it requires either taking that component offline or shutting down the server. With only one server in place, this leads to unavoidable downtime for the website, impacting user access during maintenance periods.
+
+    Scalability Challenges: As the infrastructure consists of a single server containing essential components, scaling becomes difficult. When facing a surge in incoming traffic, the server may quickly exhaust its resources, leading to performance degradation or complete unavailability. Implementing load balancing or distributing components across multiple servers could address this limitation and improve scalability.

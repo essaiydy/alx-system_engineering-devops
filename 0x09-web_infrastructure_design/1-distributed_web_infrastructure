@@ -1,0 +1,21 @@
+https://docs.google.com/document/d/1wIu4JQonrCqoZ7c861xycI0NrsmFRDsvrZmQixwUXuc/edit?usp=sharing
+
+            1-Explanation of some components and terms used in this infrastructure
+
+    We have added a load balancer to distribute tasks to servers and organize the user request process in order to reduce the risk of a SPOF occurring.
+    We have added another server to relieve pressure on the first server and speed up the process of responding to user requests and also to keep a copy of the database
+
+    The HAProxy load balancer utilizes the Round Robin distribution algorithm, configured to manage the flow of incoming traffic across servers. This algorithm functions by cycling through each server behind the load balancer in a sequential order, taking into account their assigned weights. This strategy ensures an equitable distribution of incoming requests among the servers, promoting fairness in processing load.
+    Round Robin stands out for its smooth and balanced approach, maintaining relatively equal server processing times. It's considered one of the fairest algorithms as it consistently distributes incoming requests across servers in a cyclical manner. Additionally, it offers flexibility through dynamic adjustments in server weights on the fly, allowing administrators to fine-tune the load distribution based on the servers' capacities and performance in real-time.
+
+    The HAProxy load balancer operates in an Active-Passive configuration, contrasting with an Active-Active setup commonly found in some load balancing architectures. In an Active-Active setup, workloads are evenly distributed across all available nodes, aiming to prevent any single node from becoming overwhelmed. This approach optimizes throughput and response times by leveraging the combined capacity of all active nodes simultaneously.
+    Conversely, an Active-Passive setup doesn't engage all nodes simultaneously in processing incoming workloads. In a scenario with two nodes, such as in a primary-secondary configuration, the primary node actively handles incoming requests while the secondary remains in a passive or standby state. The passive node remains ready to take over as an active node if the primary node becomes inactive or unavailable. This standby node activation occurs sequentially, ensuring that only one node is actively serving at a given time, while others remain on standby, ready to step in if needed.
+
+    In a Primary-Replica setup, one server assumes the role of the Primary server, while the other serves as a Replica of the Primary. The Primary server handles both read and write requests, actively managing data modifications. On the other hand, the Replica server exclusively handles read requests and isn't authorized to execute write operations.
+
+    Data synchronization occurs between the Primary and Replica servers whenever the Primary server executes a write operation. This process ensures that any changes made to the data on the Primary server are mirrored or replicated to the Replica server, maintaining consistency between the two servers. As a result, the Replica server holds a synchronized copy of the data from the Primary server, ensuring it remains up-to-date for read-only purposes.
+
+    In the context of the application, the Primary node and the Replica node serve distinct roles:
+
+    The Primary node takes charge of handling all write operations necessary for the site. It manages data modifications and updates, allowing the application to perform tasks such as adding, modifying, or deleting information.
+    Conversely, the Replica node is specialized in processing read operations. By being dedicated to handling read requests, it significantly reduces the read traffic directed towards the Primary node. This setup optimizes the performance of the Primary node by offloading read-related tasks to the Replica node, thus alleviating the workload on the Primary node and enhancing overall system efficiency.
