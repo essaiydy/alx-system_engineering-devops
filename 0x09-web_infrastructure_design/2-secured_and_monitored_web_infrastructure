@@ -1,0 +1,17 @@
+link: https://docs.google.com/document/d/10aYHymci1AoxbwsndLUaXNFuB-c8hldfxV1bXt8n6JY/edit?usp=sharing
+
+    1-Explanation of some components and terms used in this infrastructure
+
+Firewalls: Protect web servers from unauthorized access by acting as intermediaries between internal and external networks, blocking undesired incoming traffic.
+
+SSL Certificates: Encrypt traffic between web servers and external networks to thwart man-in-the-middle attacks, ensuring privacy, integrity, and identification.
+
+Monitoring Clients: Analyze server performance, assess health, and alert administrators to issues. Provide key metrics, test server accessibility, measure response time, and identify errors, including security vulnerabilities.
+
+    2- The issues with this infrastructure
+
+SSL Termination: Terminating SSL at the load balancer leaves traffic between the load balancer and web servers unencrypted.
+
+Single MySQL Server: Poses scalability issues and acts as a potential single point of failure for the web infrastructure.
+
+Uniform Server Components: Servers with identical components lead to resource contention (CPU, Memory, I/O), causing poor performance and scalability challenges.
