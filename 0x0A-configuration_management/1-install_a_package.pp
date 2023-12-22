@@ -1,23 +1,18 @@
-# Install Python 3.8.10
-package { 'python3.8':
-  ensure => '3.8.10',
+#install flasck
+
+$python_version = '3.8.10'
+$pip_package = 'python3-pip'
+
+package { "python${python_version}":
+  ensure => $python_version,
 }
 
-# Install pip
-package { 'python3-pip':
+package { $pip_package:
   ensure => present,
 }
 
-# Install Flask 2.1.0
-package { 'flask':
-  ensure   => '2.1.0',
+package { ['flask==2.1.0', 'werkzeug==2.1.1']:
+  ensure   => installed,
   provider => 'pip',
-  require  => Package['python3-pip'],
-}
-
-# Install Werkzeug 2.1.1
-package { 'werkzeug':
-  ensure   => '2.1.1',
-  provider => 'pip',
-  require  => Package['python3-pip'],
+  require  => Package[$pip_package],
 }
