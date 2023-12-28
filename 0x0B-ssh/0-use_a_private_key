@@ -1,2 +1,3 @@
 #!/usr/bin/env bash
+#change the name of id_rsa to school
 ssh -i ~/.ssh/school ubuntu@35.153.50.192
