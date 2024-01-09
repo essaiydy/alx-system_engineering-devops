@@ -7,5 +7,5 @@ sudo apt-get update -y
 sudo apt-get install nginx -y
 sudo service nginx start
 sudo sed -i "http {/a\n\n/t/t/add_header X-Served-By \$hostname;" /etc/nginx/nginx.conf
-echo > "hello world!" > /var/www/html/index.nginx-debian.html
+echo > "hello world!" > sudo tee /var/www/html/index.nginx-debian.html
 sudo system nginx restart
