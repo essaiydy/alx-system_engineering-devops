@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+#In this first task you need to configure web-02 to be identical to web-01
+#scp /0x0C-web_server/1-install_nginx_web_server ubuntu@54.162.4.64:/0x0C-web_server/1-install_nginx_web_server
+#ssh ubuntu@54.162.4.64 'chmod +x /0x0C-web_server/1-install_nginx_web_server && sudo /0x0C-web_server/1-install_nginx_web_server'
+
+sudo get-apt update -y
+sudo get-apt install nginx -y
+echo > "hello world!" > /var/www/html/index.nginx-debian.html
+sudo service nginx start
+sudo sed -i "http {/a\\/t/t/add_header X-Served-By \$hostname;" /etc/nginx/nginx.conf
+sudo system nginx restart
