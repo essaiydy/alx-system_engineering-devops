@@ -3,8 +3,8 @@
 #scp /0x0C-web_server/1-install_nginx_web_server ubuntu@54.162.4.64:/0x0C-web_server/1-install_nginx_web_server
 #ssh ubuntu@54.162.4.64 'chmod +x /0x0C-web_server/1-install_nginx_web_server && sudo /0x0C-web_server/1-install_nginx_web_server'
 
-sudo get-apt update -y
-sudo get-apt install nginx -y
+sudo apt-get update -y
+sudo apt-get install nginx -y
 sudo service nginx start
 sudo sed -i "http {/a\n\n/t/t/add_header X-Served-By \$hostname;" /etc/nginx/nginx.conf
 echo > "hello world!" > /var/www/html/index.nginx-debian.html
