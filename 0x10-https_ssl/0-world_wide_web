@@ -8,10 +8,16 @@ domaine() {
 		echo "The subdomain $2 is a $type record and points to $pointto"
 	fi
 
-	if [ "$#" = 1 ]; then
+	if [ "$#" == 1 ]; then
 		out=$(dig $1"."$2 | grep -A1 'ANSWER SECTION:')
 		pointto=$(echo $out | awk '{print $NF}')
 		type=$(echo $out | awk '{print $(NF - 1)}')
 		echo "The subdomain $1 is a $type record and points to $pointto"
 	fi
 }
+if [ "$#" == 1 ]
+then
+	domaine "$1"
+else
+	domaine "$1" "$2"
+fi
