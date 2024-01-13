@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+#Bash script that will display information about subdomains
+domaine() {
+	if [ "$2" ]; then
+		out=$(dig $2"."$1 | grep -A1 'ANSWER SECTION:')
+		pointto=$(echo $out | awk '{print $NF}')
+		type=$(echo $out | awk '{print $(NF - 5)}')
+		echo "The subdomain $2 is a $type record and points to $pointto"
+	fi
+
+	if [ "$#" = 1 ]; then
+		out=$(dig $1"."$2 | grep -A1 'ANSWER SECTION:')
+		pointto=$(echo $out | awk '{print $NF}')
+		type=$(echo $out | awk '{print $(NF - 1)}')
+		echo "The subdomain $1 is a $type record and points to $pointto"
+	fi
+}
