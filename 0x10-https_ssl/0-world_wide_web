@@ -2,17 +2,22 @@
 #Bash script that will display information about subdomains
 domaine() {
 	if [ "$2" ]; then
-		out=$(dig $2"."$1 | grep -A1 'ANSWER SECTION:')
+		out=$(dig "$2.$1" | grep -A1 'ANSWER SECTION:')
 		pointto=$(echo $out | awk '{print $NF}')
-		type=$(echo $out | awk '{print $(NF - 5)}')
+		type=$(echo $out | awk '{print $(NF - 1)}')
 		echo "The subdomain $2 is a $type record and points to $pointto"
 	fi
 
 	if [ "$#" == 1 ]; then
-		out=$(dig $1"."$2 | grep -A1 'ANSWER SECTION:')
-		pointto=$(echo $out | awk '{print $NF}')
-		type=$(echo $out | awk '{print $(NF - 1)}')
-		echo "The subdomain $1 is a $type record and points to $pointto"
+		for i in 'www' 'lb-01' 'web-01' 'web-02';
+		do
+			out=$(dig "$i.$2" | grep -A1 'ANSWER SECTION:')
+			if [ -n "$out" ]; then
+				pointto=$(echo $out | awk '{print $NF}')
+				type=$(echo $out | awk '{print $(NF - 1)}')
+				echo "The subdomain $i is a $type record and points to $pointto"
+			fi
+		done
 	fi
 }
 if [ "$#" == 1 ]
