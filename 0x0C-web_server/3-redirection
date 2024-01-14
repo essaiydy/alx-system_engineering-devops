@@ -13,4 +13,6 @@ VARI_CONF="\\\n\tlocation = /redirect_me {\n\t\t return 301 https://www.youtube.
 
 sudo sed -i 's/^server {/a\'"$VARI_CONF" /etc/nginx/sites-available/default
 
+sudo ln -s /etc/nginx/sites-available/default /etc/nginx/sites-enabled/
+
 sudo service nginx restart
