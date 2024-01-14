@@ -13,8 +13,8 @@ frontend myfrontend
 
 backend myservers
     balance roundrobin
-    server 393408-web-01 35.153.50.192:80 check
-    server 393408-web-02 54.162.4.64:80 check
+    server 379425-web-01 35.153.50.192:80 check
+    server 379425-web-02 54.162.4.64:80 check
 EOL
 )
 
