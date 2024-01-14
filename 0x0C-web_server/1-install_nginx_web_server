@@ -1,7 +1,22 @@
 #!/usr/bin/env bash
-#Install nginx web server
+#Installing HAproxy
+sudo apt update -y
+sudo apt install haproxy -y
+sudo systemctl enable haproxy
+config=$(cat <<EOL
+#add confi
 
-sudo apt-get -y update
-sudo apt-get -y install nginx
-echo "Hello World!" > /var/www/html/index.nginx-debian.html
-sudo service nginx start
+frontend myfrontend
+    mode http
+    bind *:80
+    default_backend myservers
+
+backend myservers
+    balance roundrobin
+    server 393408-web-01 35.153.50.192:80 check
+    server 393408-web-02 54.162.4.64:80 check
+EOL
+)
+
+echo "$config" | sudo tee  -a /etc/haproxy/haproxy.cfg
+sudo service haproxy restart
