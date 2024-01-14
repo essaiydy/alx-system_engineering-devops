@@ -9,10 +9,8 @@ sudo apt-get install nginx -y
 
 echo "Hello World!" | sudo tee /var/www/html/index.html > /dev/null
 
-VARI_CONF="\\\n\tlocation = /redirect_me {\n\t\t return 301 https://www.youtube.com/@innocentsax;\n\t}\n"
+rederection="\\\n\tlocation = /redirect_me {\n\t\treturn 301 https://www.youtube.com/@innocentsax;\n\t}\n"
 
-sudo sed -i 's/^server {/a\'"$VARI_CONF" /etc/nginx/sites-available/default
+sudo sed -i "62s|.*|$rederection|" /etc/nginx/sites-enabled/default
 
-sudo ln -s /etc/nginx/sites-available/default /etc/nginx/sites-enabled/
-
-sudo service nginx restart
+sudo /etc/init.d/nginx restart
