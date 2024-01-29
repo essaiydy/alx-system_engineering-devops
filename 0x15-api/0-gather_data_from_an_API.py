@@ -1,28 +1,22 @@
 #!/usr/bin/python3
-"""
-Returns to-do list information for a given employee ID.
-"""
+''' Python script that, using this REST API, for a given employee ID'''
 
-import requests
+from requests import get
 import sys
 
-def get_employee_data(employee_id):
-    base_url = "https://jsonplaceholder.typicode.com/"
-    user = requests.get(base_url + "users/{}".format(employee_id)).json()
-    todos = requests.get(base_url + "todos", params={"userId": employee_id}).json()
-    
-    return user, todos
+if __name__ == '__main__':
+    main_url = 'https://jsonplaceholder.typicode.com'
+    todo_url = main_url + "/user/{}/todos".format(argv[1])
+    name_url = main_url + "/users/{}".format(argv[1])
+    todo_result = get(todo_url).json()
+    name_result = get(name_url).json()
 
-def print_employee_tasks(name, completed_tasks, total_tasks):
-    print("Employee {} is done with tasks({}/{}):".format(name, completed_tasks, total_tasks))
-    [print("\t {}".format(c)) for c in completed_tasks]
-
-if __name__ == "__main__":
-    if len(sys.argv) != 2:
-        print("Usage: {} <employee_id>".format(sys.argv[0]))
-    else:
-        employee_id = sys.argv[1]
-        user, todos = get_employee_data(employee_id)
-        
-        completed_tasks = [t.get("title") for t in todos if t.get("completed")]
-        print_employee_tasks(user.get("name"), len(completed_tasks), len(todos))
+    todo_num = len(todo_result)
+    todo_complete = len([todo for todo in todo_result
+                         if todo.get("completed")])
+    name = name_result.get("name")
+    print("Employee {} is done with tasks({}/{}):"
+          .format(name, todo_complete, todo_num))
+    for todo in todo_result:
+        if (todo.get("completed")):
+            print("\t {}".format(todo.get("title")))
