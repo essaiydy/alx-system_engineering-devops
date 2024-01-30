@@ -10,11 +10,8 @@ if __name__ == "__main__":
 
     todo_respo = requests.get(url).json()
     name_respo = requests.get(usinfo).json()
-
     name = name_respo.get("name")
-
     num_todo = len(todo_respo)
-
     j = 0
 
     for task in todo_respo:
