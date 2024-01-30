@@ -18,7 +18,7 @@ if __name__ == "__main__":
     j = 0
 
     for task in todo_respo:
-        if task["userId"] == int(sys.argv[1]) and task["completed"]:
+        if task["completed"]:
             j += 1
     print("Employee {} is done with tasks {}/{}".format(name, j, num_todo))
 
