@@ -4,17 +4,33 @@
 import requests
 import sys
 
-''''if __name__ == '__main__':
-    url = 'https://jsonplaceholder.typicode.com'
-    idd = sys.argv[1]
-    respo = url + "/users/{}".format(idd)
-    user = respo.json()'''
 if __name__ == "__main__":
-    url = "https://jsonplaceholder.typicode.com/"
-    user = requests.get(url + "users/{}".format(sys.argv[1])).json()
-    todos = requests.get(url + "todos", params={"userId": sys.argv[1]}).json()
+    url = 'https://jsonplaceholder.typicode.com/todos/' + sys.argv[1]
+    usinfo = 'https://jsonplaceholder.typicode.com/users/' + sys.argv[1]
 
-    completed = [t.get("title") for t in todos if t.get("completed") is True]
-    print("Employee {} is done with tasks({}/{}):".format(
-        user.get("name"), len(completed), len(todos)))
-    [print("\t {}".format(c)) for c in completed]
+    try:
+	todo_respo = requests.get(url).json()
+	name_respo = requests.get(usinfo).json()
+
+	name = name_respo.get("name")
+	
+	nub_todo = len(todo_respo)
+
+	j = 0
+
+	for i in todo_respo:
+	    if i["userId"] == sys.argv[1] && i["completed"]:
+		j++
+
+	print("Employee {} is done with tasks {}/{}".format(name, j, nub_todo))
+
+	for title in todo_respo:
+	    if title["completed"]:
+		print("\t {}".format(todo_respo.get("title")))
+
+    except requests.HTTPError as http_err:
+        print(f"HTTP error occurred: {http_err}")
+    except requests.RequestException as req_err:
+        print(f"Request error occurred: {req_err}")
+    except Exception as e:
+        print(f"An unexpected error occurred: {e}")
