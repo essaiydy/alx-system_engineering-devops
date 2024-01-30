@@ -13,15 +13,15 @@ if __name__ == "__main__":
 
     name = name_respo.get("name")
 
-    nub_todo = len(todo_respo)
+    num_todo = len(todo_respo)
 
     j = 0
 
-    for i in todo_respo:
-        if i["userId"] == sys.argv[1] && i["completed"]:
-            j++
-            print("Employee {} is done with tasks {}/{}".format(name, j, nub_todo))
+    for task in todo_respo:
+        if task["userId"] == int(sys.argv[1]) and task["completed"]:
+            j += 1
+    print("Employee {} is done with tasks {}/{}".format(name, j, num_todo))
 
-    for title in todo_respo:
-        if title["completed"]:
-            print("\t {}".format(todo_respo.get("title")))
+    for task in todo_respo:
+        if task["completed"]:
+            print("\t {}".format(task["title"]))
