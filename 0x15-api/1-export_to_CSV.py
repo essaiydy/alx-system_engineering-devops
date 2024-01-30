@@ -18,5 +18,5 @@ if __name__ == "__main__":
         data.append([sys.argv[1], NAME, respo["completed"], respo["title"]])
 
     with open('{}.csv'.format(sys.argv[1]), mode='w', newline='') as f:
-        writer = csv.writer(f)
+        writer = csv.writer(f, quotechar='"', quoting=csv.QUOTE_NONNUMERIC)
         writer.writerows(data[1:])
