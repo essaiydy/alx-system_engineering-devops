@@ -1,9 +1,9 @@
 #!/usr/bin/python3
 '''extend your Python script to export data in the CSV format'''
 
-import requests
-import sys
 import csv
+import sys
+import requests
 
 if __name__ == "__main__":
     url = 'https://jsonplaceholder.typicode.com/todos?userId=' + sys.argv[1]
