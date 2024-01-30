@@ -12,11 +12,10 @@ if __name__ == "__main__":
     todo_respo = requests.get(url).json()
     name_respo = requests.get(usinfo).json()
     NAME = name_respo.get("username")
-
     data = []
+
     for respo in todo_respo:
         data.append([sys.argv[1], NAME, respo["completed"], respo["title"]])
-
     with open('{}.csv'.format(sys.argv[1]), 'w') as f:
         writer = csv.writer(f, quotechar='"', quoting=csv.QUOTE_NONNUMERIC)
         writer.writerows(data)
