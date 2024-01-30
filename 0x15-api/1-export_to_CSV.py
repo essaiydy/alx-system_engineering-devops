@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-''' Python script that, using this REST API, for a given employee ID'''
+'''extend your Python script to export data in the CSV format'''
 
 import requests
 import sys
