@@ -19,4 +19,4 @@ if __name__ == "__main__":
 
     with open('{}.csv'.format(sys.argv[1]), mode='w', newline='') as f:
         writer = csv.writer(f, quotechar='"', quoting=csv.QUOTE_NONNUMERIC)
-        writer.writerows(data[1:])
+        writer.writerows(data[0:])
