@@ -16,8 +16,7 @@ if __name__ == "__main__":
     lis = []
 
     for task in todo_respo:
-        lis.append({"task": task["title"], "completed": task["completed"],
-                  "username": NAME})
+        lis.append({"task": task["title"], "completed": task["completed"], "username": NAME})
 
     with open("{}.json".format(sys.argv[1]), "w") as f:
         dump({sys.argv[1]: lis}, f)
