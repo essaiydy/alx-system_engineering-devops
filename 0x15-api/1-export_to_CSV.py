@@ -11,7 +11,7 @@ if __name__ == "__main__":
 
     todo_respo = requests.get(url).json()
     name_respo = requests.get(usinfo).json()
-    NAME = name_respo.get("name")
+    NAME = name_respo.get("username")
 
     data = []
     for respo in todo_respo:
