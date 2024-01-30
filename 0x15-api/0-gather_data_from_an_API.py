@@ -10,14 +10,14 @@ if __name__ == "__main__":
 
     todo_respo = requests.get(url).json()
     name_respo = requests.get(usinfo).json()
-    name = name_respo.get("name")
-    num_todo = len(todo_respo)
-    j = 0
+    EMPLOYEE_NAME = name_respo.get("name")
+    TOTAL_NUMBER_OF_TASKS = len(todo_respo)
+    NUMBER_OF_DONE_TASKS = 0
 
     for task in todo_respo:
         if task["completed"]:
-            j += 1
-    print("Employee {} is done with tasks {}/{}".format(name, j, num_todo))
+            NUMBER_OF_DONE_TASKS += 1
+    print("Employee {} is done with tasks {}/{}".format(EMPLOYEE_NAME, NUMBER_OF_DONE_TASKS, TOTAL_NUMBER_OF_TASKS))
 
     for task in todo_respo:
         if task["completed"]:
