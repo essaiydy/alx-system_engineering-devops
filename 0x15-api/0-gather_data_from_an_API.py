@@ -17,7 +17,7 @@ if __name__ == "__main__":
     for task in todo_respo:
         if task["completed"]:
             DONE += 1
-    print("Employee {} is done with tasks ({}/{}):".format(NAME, DONE, TASKS))
+    print("Employee {} is done with tasks({}/{}):".format(NAME, DONE, TASKS))
 
     for task in todo_respo:
         if task["completed"]:
