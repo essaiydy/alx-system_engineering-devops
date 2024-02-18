@@ -5,7 +5,7 @@ this doc for module
 import requests
 
 header = {
-    "User-Agent": "MyCustomUserAgent/1.0"
+    "User-Agent": "Ubuntu 20.04/1.0"
 }
 
 
